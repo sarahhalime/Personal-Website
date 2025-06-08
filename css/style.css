@@ -447,23 +447,19 @@ header {
 }
 
 
-/* portfolio item styles */
-.portfolio-item-individual {
-    padding: 0 2em 2em;
-    max-width: 1000px;
-    margin: 0 auto;
+.section__title--work {
+    margin-bottom: 0.5rem; 
 }
 
-.portfolio-item-individual p {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+.section__subtitle--work {
+    margin-bottom: -1rem; 
 }
 
 .note {
     margin-bottom: 1rem; 
 }
 
+/* portfolio item styles */
 .portfolio-item-individual {
     padding: 0 2em 2em;
     max-width: 1000px;
