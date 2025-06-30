@@ -361,6 +361,35 @@ body {
     transform: translateY(-3px);
 }
 
+/* Profile Section */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    transition: var(--transition-medium);
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /* Code Window */
 .hero-visual {
     display: flex;
@@ -487,7 +516,7 @@ section {
 
 .about-content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
     gap: 4rem;
     align-items: start;
 }
@@ -515,8 +544,8 @@ section {
 }
 
 .about-highlights {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
 }
 
@@ -554,40 +583,6 @@ section {
     color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.5;
-}
-
-.about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-}
-
-.stat-card {
-    background: var(--bg-primary);
-    padding: 2rem;
-    border-radius: var(--border-radius-lg);
-    text-align: center;
-    box-shadow: var(--shadow-light);
-    transition: var(--transition-medium);
-    border: 1px solid var(--border-color);
-}
-
-.stat-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-medium);
-}
-
-.stat-number {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    font-weight: 500;
 }
 
 /* Skills Section */
@@ -1043,13 +1038,18 @@ section {
         gap: 3rem;
     }
     
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+    
     .about-content {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
     
-    .about-stats {
-        grid-template-columns: 1fr 1fr;
+    .about-highlights {
+        grid-template-columns: 1fr;
     }
     
     .project-card.featured {
@@ -1082,10 +1082,6 @@ section {
     .btn {
         width: 100%;
         justify-content: center;
-    }
-    
-    .about-stats {
-        grid-template-columns: 1fr;
     }
     
     .skills-grid {
