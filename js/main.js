@@ -71,10 +71,10 @@ sections.forEach(section => {
 // Typing animation
 const phrases = [
     "Computer Science Student",
-    "Data Science Enthusiast",
+    "Data Science Enthusiast", 
     "AI/ML Explorer",
     "Problem Solver",
-    "Full-Stack Developer"
+    "Aspiring Developer"
 ];
 
 let phraseIndex = 0;
