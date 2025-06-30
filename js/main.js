@@ -207,17 +207,12 @@ contactForm.addEventListener('submit', function(e) {
     const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
     const mailtoLink = `mailto:sarahhalime55@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    // Open email client
     window.location.href = mailtoLink;
     
-    // Reset form
     this.reset();
-    
-    // Show success message
-    alert('Thank you for your message! Your email client should open now.');
+    alert('Thank you for your message!');
 });
 
-// Parallax effect for hero section
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const parallaxElements = document.querySelectorAll('.hero-visual');
