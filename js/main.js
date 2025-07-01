@@ -343,11 +343,10 @@ window.addEventListener('scroll', () => {
     scrollProgress.style.width = scrollPercent + '%';
 });
 
-// Console message for developers
+// Console message for devs
 console.log(`
 🚀 Welcome to Sarah Halime's Portfolio!
-👩‍💻 Built with vanilla HTML, CSS, and JavaScript
-🎨 Designed with modern web standards
+👩‍💻 Built with HTML, CSS, and JavaScript
 📧 Contact: sarahhalime55@gmail.com
 🔗 LinkedIn: https://linkedin.com/in/sarah-halime
 💻 GitHub: https://github.com/sarahhalime
