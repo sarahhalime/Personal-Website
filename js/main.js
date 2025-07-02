@@ -1,4 +1,4 @@
-// DOM Elements
+// Elements
 const loadingScreen = document.getElementById('loadingScreen');
 const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('navToggle');
@@ -34,7 +34,7 @@ navLinks.forEach(link => {
     });
 });
 
-// Navbar scroll effect
+// Navbar scroll
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
@@ -46,8 +46,8 @@ window.addEventListener('scroll', () => {
 // Active navigation link
 const sections = document.querySelectorAll('section');
 const observerOptions = {
-    threshold: 0.3,
-    rootMargin: '-100px 0px -100px 0px'
+    threshold: 0.12, // Lower threshold for earlier detection
+    rootMargin: '-50px 0px -50px 0px' // Less aggressive margin
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -110,7 +110,6 @@ function typeText() {
 // Start typing animation after loading
 setTimeout(typeText, 2000);
 
-// Animated counters
 function animateCounters() {
     const counters = document.querySelectorAll('.stat-number');
     
@@ -145,13 +144,11 @@ function animateSkillBars() {
     });
 }
 
-// Intersection Observer for animations
 const animationObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('fade-in-up');
             
-            // Trigger specific animations
             if (entry.target.classList.contains('about-stats')) {
                 animateCounters();
             }
@@ -166,13 +163,12 @@ const animationObserver = new IntersectionObserver((entries) => {
     rootMargin: '0px 0px -50px 0px'
 });
 
-// Observe elements for animation
 const animatedElements = document.querySelectorAll('.about-content, .skills-content, .projects-grid, .contact-content');
 animatedElements.forEach(el => {
     animationObserver.observe(el);
 });
 
-// Smooth scrolling for anchor links
+// Smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -186,7 +182,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Contact form handling
+// Contact form
 contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -196,7 +192,6 @@ contactForm.addEventListener('submit', function(e) {
     const email = formData.get('email');
     const message = formData.get('message');
     
-    // Simple validation
     if (!name || !email || !message) {
         alert('Please fill in all fields');
         return;
@@ -307,7 +302,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Lazy loading for images
 const images = document.querySelectorAll('img[data-src]');
 const imageObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -341,6 +335,34 @@ window.addEventListener('scroll', () => {
     const docHeight = document.body.offsetHeight - window.innerHeight;
     const scrollPercent = (scrollTop / docHeight) * 100;
     scrollProgress.style.width = scrollPercent + '%';
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    let currentTheme = localStorage.getItem('theme') || 'dark';
+
+    function setTheme(theme) {
+        currentTheme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (themeIcon) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    }
+
+    function initTheme() {
+        setTheme(currentTheme);
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+    }
+
+    initTheme();
 });
 
 // Console message for devs

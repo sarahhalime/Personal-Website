@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* Base Styles */
 *,
 *::before,
 *::after {
@@ -40,7 +40,7 @@
     --transition-slow: 0.5s ease;
 }
 
-/* Dark mode variables */
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
     :root {
         --text-primary: #f9fafb;
@@ -212,8 +212,10 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-/*     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e5e7eb" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-    opacity: 0.5; */
+/*  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e5e7eb" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.5; 
+(for grid backghround)
+*/
 }
 
 .hero-container {
@@ -397,15 +399,32 @@ body {
     align-items: center;
 }
 
+
+/* Make code window always use the same dark style so it shows */
 .code-window {
-    background: var(--bg-dark);
+    background: #181c24 !important;
     border-radius: var(--border-radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-heavy);
+    box-shadow: 0 20px 25px rgba(0,0,0,0.18);
     max-width: 500px;
     width: 100%;
     animation: float 6s ease-in-out infinite;
 }
+
+.code-window .window-header {
+    background: #2d3748 !important;
+}
+.code-window .window-title {
+    color: #a0aec0 !important;
+}
+.code-window .code-content {
+    color: #f8fafc !important;
+    background: transparent !important;
+}
+.code-window .code-content .keyword { color: #ff79c6 !important; }
+.code-window .code-content .class-name { color: #8be9fd !important; }
+.code-window .code-content .function { color: #50fa7b !important; }
+.code-window .code-content .string { color: #f1fa8c !important; }
 
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
@@ -996,7 +1015,39 @@ section {
     color: var(--primary-color);
 }
 
-/* Responsive Design */
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 100px;
+    right: 2rem;
+    z-index: 1001;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    transition: var(--transition-medium);
+}
+
+.theme-toggle i {
+    font-size: 1.45rem !important;
+    color: var(--primary-color);
+    pointer-events: none;
+    transition: font-size 0.2s;
+}
+
+.theme-toggle:hover {
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+/* Design */
 @media (max-width: 768px) {
     .nav-menu {
         position: fixed;
@@ -1113,7 +1164,6 @@ section {
     animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Utility Classes */
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .text-right { text-align: right; }
@@ -1127,3 +1177,48 @@ section {
 .mt-2 { margin-top: 1rem; }
 .mt-3 { margin-top: 1.5rem; }
 .mt-4 { margin-top: 2rem; }
+
+[data-theme="light"] {
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-light: #9ca3af;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-dark: #f3f4f6;
+    --border-color: #e5e7eb;
+}
+
+[data-theme="dark"] {
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-light: #9ca3af;
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-dark: #030712;
+    --border-color: #374151;
+}
+
+[data-theme="light"] .navbar {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+[data-theme="dark"] .navbar {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+[data-theme="light"] .nav-link {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .nav-link {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .nav-link.active {
+    color: var(--primary-color);
+}
+[data-theme="dark"] .nav-link.active {
+    color: var(--secondary-color);
+}
