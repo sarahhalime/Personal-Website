@@ -1,0 +1,24 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vite.config.js",
+  "devDependencies": {
+    "vite": "^7.1.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarahhalime/Personal-Website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sarahhalime/Personal-Website/issues"
+  },
+  "homepage": "https://github.com/sarahhalime/Personal-Website#readme"
+}
