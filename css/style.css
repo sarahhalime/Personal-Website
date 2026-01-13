@@ -604,6 +604,19 @@ section {
     line-height: 1.5;
 }
 
+.highlight-item ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    list-style: disc;
+}
+
+.highlight-item li {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
 /* Skills Section */
 .skills-content {
     display: grid;
@@ -762,6 +775,10 @@ section {
     height: 100%;
     object-fit: cover;
     transition: var(--transition-medium);
+}
+
+.project-image.fit-contain img {
+    object-fit: contain;
 }
 
 .project-overlay {
