@@ -1124,6 +1124,10 @@ section {
         padding: 0 1.5rem;
     }
 
+    .hero {
+        padding-top: 125px;
+    }
+
     /* Hero: stack intro text on top, code window below */
     .hero-content {
         grid-template-columns: minmax(0, 1fr);
@@ -1148,6 +1152,7 @@ section {
     .profile-image {
         order: 1;
         justify-self: center;
+        margin-top: 1.5rem;
     }
     .hero-text {
         order: 2;
