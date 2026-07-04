@@ -209,9 +209,18 @@ contactForm.addEventListener('submit', function(e) {
 });
 
 window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
     const parallaxElements = document.querySelectorAll('.hero-visual');
-    
+
+    // Parallax is desktop-only: on mobile the hero stacks vertically and
+    // the translate would slide the visuals over the text below.
+    if (window.innerWidth <= 768) {
+        parallaxElements.forEach(element => {
+            element.style.transform = '';
+        });
+        return;
+    }
+
+    const scrolled = window.pageYOffset;
     parallaxElements.forEach(element => {
         const speed = 0.5;
         element.style.transform = `translateY(${scrolled * speed}px)`;

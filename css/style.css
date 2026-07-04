@@ -56,6 +56,8 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -63,7 +65,16 @@ body {
     line-height: 1.6;
     color: var(--text-primary);
     background-color: var(--bg-primary);
+    max-width: 100%;
     overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+h1, h2, h3, h4, p {
+    overflow-wrap: break-word;
 }
 
 .container {
@@ -564,7 +575,7 @@ section {
 
 .about-highlights {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 1.5rem;
 }
 
@@ -640,7 +651,7 @@ section {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -696,7 +707,7 @@ section {
 
 .tech-stack {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
     gap: 1.5rem;
 }
 
@@ -734,7 +745,7 @@ section {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
     gap: 2.5rem;
     margin-bottom: 3rem;
 }
@@ -1098,20 +1109,102 @@ section {
         top: 1.5rem;
         z-index: 1100;
     }
-    .hero-content {
-        grid-template-columns: 1fr 1fr;
-        text-align: left;
-        gap: 4rem;
+    .container,
+    .hero-container,
+    .nav-container {
+        padding: 0 1.25rem;
     }
-    .hero-visual {
-        justify-content: flex-end;
-        align-items: flex-start;
+    section {
+        padding: 3.5rem 0;
+    }
+
+    .terminal-loader {
+        font-size: 1rem;
+        text-align: center;
+        padding: 0 1.5rem;
+    }
+
+    /* Hero: stack intro text on top, code window below */
+    .hero-content {
+        grid-template-columns: minmax(0, 1fr);
+        text-align: center;
+        gap: 2.5rem;
+    }
+    .hero-text,
+    .hero-visual,
+    .profile-section,
+    .code-window {
+        min-width: 0;
+        max-width: 100%;
+    }
+    /* Mobile order: photo, intro text, then code window. display: contents
+       dissolves the wrappers so all three are grid items — this also disables
+       the scroll parallax that main.js applies to .hero-visual, which
+       otherwise slides the code window over the text on tall mobile heroes. */
+    .hero-visual,
+    .profile-section {
+        display: contents;
     }
     .profile-image {
-        width: 120px;
-        height: 120px;
+        order: 1;
+        justify-self: center;
+    }
+    .hero-text {
+        order: 2;
+    }
+    .code-window {
+        order: 3;
+        justify-self: center;
+        text-align: left;
+    }
+    .profile-section {
+        width: 100%;
+    }
+    .greeting {
+        justify-content: center;
+    }
+    .hero-title {
+        font-size: 2.25rem;
+    }
+    .hero-subtitle {
+        font-size: 1.25rem;
+        min-height: 2rem;
+    }
+    .hero-description {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+    .hero-visual {
+        justify-content: center;
+        align-items: center;
+    }
+    .profile-image {
+        width: 140px;
+        height: 140px;
         margin: 0;
     }
+    .code-window {
+        max-width: 100%;
+        animation: none;
+    }
+    .code-content {
+        font-size: 0.75rem;
+        padding: 1rem;
+    }
+    .scroll-indicator {
+        display: none;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+    .section-subtitle {
+        font-size: 1.05rem;
+    }
+
     .about-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -1119,11 +1212,42 @@ section {
     .about-highlights {
         grid-template-columns: 1fr;
     }
-    .project-card.featured {
-        grid-column: span 2;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+    .about-card {
+        padding: 1.75rem;
     }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    .tech-stack {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    /* Projects: single column, full-width cards */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .project-card.featured {
+        grid-column: auto;
+        display: block;
+    }
+    .project-card.featured .project-image {
+        height: 250px;
+    }
+    .project-content {
+        padding: 1.5rem;
+    }
+    .project-header {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    .project-header h3 {
+        font-size: 1.4rem;
+    }
+
     .contact-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -1133,66 +1257,68 @@ section {
         gap: 1rem;
         text-align: center;
     }
-    .hero-title, .section-title {
-        font-size: 2rem;
-    }
-    .hero-description {
-        font-size: 1rem;
-    }
     .btn {
         width: 100%;
+        justify-content: center;
         font-size: 1rem;
+    }
+    .theme-toggle {
+        top: 90px;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
     }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 0 0.5rem;
+    .container,
+    .hero-container,
+    .nav-container {
+        padding: 0 1rem;
     }
-    .hero-content {
-        grid-template-columns: 1fr 1fr;
-        text-align: left;
-        gap: 2rem;
-        max-width: 100vw;
+    .hero-title {
+        font-size: 2rem;
     }
-    .hero-visual {
-        justify-content: flex-end;
-        align-items: flex-start;
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    .section-title {
+        font-size: 1.75rem;
     }
     .profile-image {
         width: 120px;
         height: 120px;
-        margin: 0;
     }
-    .code-window {
-        max-width: 100%;
+    .code-content {
+        font-size: 0.7rem;
+    }
+    .tech-stack {
+        grid-template-columns: 1fr;
+    }
+    .tech-tag {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    .project-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    .contact-card {
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+    .contact-icon {
+        width: 54px;
+        height: 54px;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+    }
+    .contact-details {
         min-width: 0;
-        width: 100%;
     }
-    .project-card.featured {
-        grid-column: span 2;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        max-width: 100vw;
-    }
-    .project-card.featured .project-image,
-    .project-card.featured .project-content {
-        min-width: 0;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    .projects-grid {
-        grid-template-columns: 1fr 1fr;
-        max-width: 100vw;
-    }
-    body, html, .container, .hero-container {
-        max-width: 100vw;
-        overflow-x: auto;
-    }
-    /* Allow horizontal scroll for desktop layout on mobile */
-    .hero-content, .projects-grid, .project-card.featured {
-        min-width: 700px;
-        width: 100vw;
+    .contact-details a {
+        overflow-wrap: anywhere;
     }
 }
 
