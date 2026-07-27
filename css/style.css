@@ -792,6 +792,46 @@ section {
     object-fit: contain;
 }
 
+/* Mellow card: full screenshot on top, hardware photo fills the remaining height */
+.project-image.mellow-media {
+    background: #141a2a;
+}
+
+.mellow-media .mellow-stack {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mellow-media .mellow-stack img {
+    width: 100%;
+    display: block;
+}
+
+.mellow-media .mellow-stack img:first-child {
+    flex: none;
+    height: auto;
+}
+
+.mellow-media .mellow-stack img:last-child {
+    flex: 1 1 0;
+    min-height: 0;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .project-card.featured .project-image.mellow-media {
+        height: auto;
+    }
+
+    .mellow-media .mellow-stack img:last-child {
+        flex: none;
+        height: auto;
+        object-fit: fill;
+    }
+}
+
 .project-overlay {
     position: absolute;
     top: 0;
